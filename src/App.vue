@@ -1,9 +1,13 @@
 <template>
   <base-container title="Vuex">
     <p>Counter Value: {{ counterValue }}</p>
+    <!-- RENDER Counter -->
     <the-counter></the-counter>
+    <!-- RENDER Counter -->
     <favorite-value></favorite-value>
+    <!-- UPDATE Counter -->
     <button @click="addOne">(Counter + 1) * 3</button>
+    <!-- Update Counter -->
     <change-counter></change-counter>
   </base-container>
 </template>
