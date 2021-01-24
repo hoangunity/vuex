@@ -1,13 +1,14 @@
 <template>
-  <p>Not capped</p>
+  <p>Capped value</p>
   <h3>{{ counter }}</h3>
+  <p>We do more...</p>
 </template>
 
 <script>
 export default {
   computed: {
     counter() {
-      return this.$store.getters.finalCounter;
+      return this.$store.getters.normalizedCounter;
     }
   }
 };
