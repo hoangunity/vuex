@@ -1,6 +1,5 @@
 <template>
   <base-container title="Vuex" v-if="isAuth">
-    <p>Counter Value: {{ counterValue }}</p>
     <!-- RENDER Counter -->
     <the-counter></the-counter>
     <!-- RENDER Counter -->
@@ -37,15 +36,12 @@ export default {
     addOne() {
       // this.$store.commit('increase', { value: 10 });
       this.$store.dispatch({
-        type: 'increase',
+        type: 'numbers/increase',
         value: 1
       });
     }
   },
   computed: {
-    counterValue() {
-      return this.$store.state.counter;
-    },
     // isAuthenticated() {
     //   return this.$store.state.isAuthenticated;
     // },
