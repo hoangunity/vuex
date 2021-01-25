@@ -3,11 +3,10 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
     return {
-      counter: 0,
-      isAuthenticated: false
+      counter: 0
     };
   },
   mutations: {
@@ -16,9 +15,6 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
-    },
-    setAuthentication(state, payload) {
-      state.isAuthenticated = payload.isAuth;
     }
   },
   actions: {
@@ -31,16 +27,6 @@ const store = createStore({
     increase(context, payload) {
       // console.log(context);
       context.commit('increase', payload); // payload: object
-    },
-    approveAuthentication(context) {
-      setTimeout(function() {
-        context.commit('setAuthentication', { isAuth: true });
-      }, 1500);
-    },
-    denyAuthentication(context) {
-      setTimeout(function() {
-        context.commit('setAuthentication', { isAuth: false });
-      }, 1500);
     }
   },
   getters: {
@@ -53,7 +39,37 @@ const store = createStore({
       if (finalCounter < 0) return 0;
       if (finalCounter > 100) return 100;
       return finalCounter;
+    }
+  }
+};
+
+const store = createStore({
+  modules: {
+    numbers: counterModule
+  },
+  state() {
+    return {
+      isAuthenticated: false
+    };
+  },
+  mutations: {
+    setAuthentication(state, payload) {
+      state.isAuthenticated = payload.isAuth;
+    }
+  },
+  actions: {
+    approveAuthentication(context) {
+      setTimeout(function() {
+        context.commit('setAuthentication', { isAuth: true });
+      }, 1500);
     },
+    denyAuthentication(context) {
+      setTimeout(function() {
+        context.commit('setAuthentication', { isAuth: false });
+      }, 1500);
+    }
+  },
+  getters: {
     userIsAuthenticated(state) {
       return state.isAuthenticated;
     }
